@@ -1,0 +1,1 @@
+- Clarify the requirement for "all text inputs" (current instruction is incomplete).
