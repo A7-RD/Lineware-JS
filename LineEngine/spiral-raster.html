@@ -92,6 +92,15 @@
                 <button type="button" class="number-btn plus" data-target="segment-length">+</button>
               </div>
             </div>
+            <div class="select-control">
+              <label for="stroke-cap">Line Mode</label>
+              <div class="select-input">
+                <select id="stroke-cap">
+                  <option value="round" selected>Round</option>
+                  <option value="butt">Flat</option>
+                </select>
+              </div>
+            </div>
           </div>
           <div class="stroke-levels">
             <label>Stroke Levels</label>
@@ -243,12 +252,16 @@
       console.log('Container:', container);
       container.innerHTML = '';
       const existing = Array.isArray(state.strokeWeights) ? state.strokeWeights : [];
+      const shouldRebaseline = levels > existing.length;
       const newWeights = [];
 
       for (let i = 0; i < levels; i++) {
-        const defaultWeight = Number.isFinite(existing[i])
-          ? existing[i]
-          : Math.max(1, Math.round(1 + (levels - i - 1) * 0.5));
+        const targetDefault = Math.max(1, levels - i);
+        const defaultWeight = shouldRebaseline
+          ? targetDefault
+          : Number.isFinite(existing[i])
+            ? existing[i]
+            : targetDefault;
 
         const numberControl = document.createElement('div');
         numberControl.className = 'number-control';
