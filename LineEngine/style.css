@@ -3,8 +3,8 @@
 }
 
 :root {
-  --prime-light: hsl(85, 100%, 97%);
-  --prime-dark: hsl(90, 11%, 11%);
+  --prime-light: hsl(132, 11%, 91%);
+  --prime-dark: hsl(86, 3%, 46%);
 
   --tone-light-1: color-mix(in srgb, var(--prime-light) 85%, var(--prime-dark) 15%);
   --tone-light-2: color-mix(in srgb, var(--prime-light) 70%, var(--prime-dark) 30%);
@@ -277,6 +277,7 @@ body.theme-light {
   overflow: hidden;
 }
 
+
 .select-control {
   display: flex;
   flex-direction: column;
@@ -485,9 +486,9 @@ body.theme-light {
 }
 
 .footer-credit {
-  font-family: 'Geist', sans-serif;
+  font-family: 'Geist Mono', monospace;
   font-weight: 300;
-  font-size: 14px;
+  font-size: 12px;
   letter-spacing: 0.4px;
 }
 
@@ -495,14 +496,31 @@ body.theme-light {
   background: var(--theme-button-bg);
   color: var(--theme-button-text);
   border: none;
-  border-radius: 24px;
-  width: 48px;
-  height: 48px;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background 0.2s ease, color 0.2s ease;
+}
+
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+.theme-toggle .icon-moon {
+  display: none;
+}
+
+.theme-toggle.is-light .icon-sun {
+  display: none;
+}
+
+.theme-toggle.is-light .icon-moon {
+  display: block;
 }
 
 .theme-toggle:hover {
@@ -532,14 +550,32 @@ body.theme-light {
     text-box-edge: cap alphabetic;
   }
 
-  .page-footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-m);
-  }
+}
+/* Decorative SVG styling */
+.footer-graphic {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  background-color: var(--theme-text);
+  transform-origin: 05% 50%;
+}
 
-  .theme-toggle {
-    width: 40px;
-    height: 40px;
+.footer-graphic-track {
+  animation: footer-pan 18s linear infinite;
+  transform-box: fill-box;
+  transform-origin: 0 50%;
+  will-change: transform;
+}
+
+@keyframes footer-pan {
+  from {
+    transform: translateX(0);
   }
+  to {
+    transform: translateX(1008px);
+  }
+}
+
+svg path[fill="#111111"] {
+  fill: var(--theme-surface); /* or any color you want */
 }
